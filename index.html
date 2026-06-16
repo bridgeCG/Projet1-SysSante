@@ -1,7 +1,132 @@
-<!Doctype html>
-<html>
-<head>
-</head>
-<body>
-</body>
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Centre Hospitalier - Inscription</title>
+    <style>
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: 400px;
+      }
+
+      label {
+        display: block;
+        margin-top: 5px;
+      }
+
+      input,
+      button {
+        padding: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section>
+        <h1>VT Creation</h1>
+        <h2>Centre Hospitalier</h2>
+        <p>Bienvenue sur la plateforme de prise de rendez-vous en ligne.</p>
+        <p><strong>Avez-vous déjà un compte ?</strong></p>
+        <p>Choisissez une option pour continuer.</p>
+
+        <div id="choix-container">
+          <p><strong>Que souhaitez-vous faire ?</strong></p>
+          <button type="button" id="btn-inscription">S'inscrire</button>
+          <button type="button" id="btn-connexion">Se connecter</button>
+           <a href="https://account.google.com" class="btn-google-link">    
+              <div class="btn-google">
+                  <img src="https://bridgeCG.google.com/identity/branding/images/g-logo.png" alt="Ou continuer avec Google de VT la stars :" width="20">
+              </div>
+
+            </a>
+          </div>
+
+         <div id="form-section" style="display: none;">
+          <form id="form-inscription" action="#" method="post" style="display: none;">
+            <h3>Créer un compte</h3>
+
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" placeholder="Ex : MAKANI" required />
+
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" name="prenom" placeholder="Ex : Vertus Richter" required />
+
+            <label for="Contactn">Num tal ou adresse e-mail</label>
+            <input type="text" id="contact" name="contact" placeholder="Ex : 06 851 99 59 ou exemple@gamil.com" required/>
+
+            <label for="motdepasse">Mot de passe</label>
+            <input type="password" id="motdepasse" name="motdepasse" placeholder="Créez un mot de passe" required />
+
+            <button type="submit">Envoyer</button>
+            <p>
+              <a href="#" id="switch-to-connexion">Vous avez déjà un compte ? Connectez-vous</a>
+            </p>
+          </form>
+
+          <form id="form-connexion" action="#" method="post" style="display: none;">
+            <h3>Connexion</h3>
+
+            <label for="login-email">Adresse e-mail</label>
+            <input type="email" id="login-email" name="login-email" placeholder="exemple@mail.com" required />
+
+            <label for="login-password">Mot de passe</label>
+            <input type="password" id="login-password" name="login-password" placeholder="Entrez votre mot de passe" required />
+
+            <button type="submit">Envoyer</button>
+           
+            <p>
+              <a href="#" id="switch-to-inscription">Vous n'avez pas encore de compte ? Inscrivez-vous</a>
+            </p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const choixContainer = document.getElementById('choix-container');
+      const formSection = document.getElementById('form-section');
+      const btnInscription = document.getElementById('btn-inscription');
+      const btnConnexion = document.getElementById('btn-connexion');
+      const formInscription = document.getElementById('form-inscription');
+      const formConnexion = document.getElementById('form-connexion');
+      const switchToConnexion = document.getElementById('switch-to-connexion');
+      const switchToInscription = document.getElementById('switch-to-inscription');
+
+      function afficherFormulaire(choix) {
+        choixContainer.style.display = 'none';
+        formSection.style.display = 'block';
+        formInscription.style.display = 'none';
+        formConnexion.style.display = 'none';
+
+        if (choix === 'inscription') {
+          formInscription.style.display = 'flex';
+          formConnexion.reset();
+        } else if (choix === 'connexion') {
+          formConnexion.style.display = 'flex';
+          formInscription.reset();
+        }
+      }
+
+      btnInscription.addEventListener('click', () => {
+        afficherFormulaire('inscription');
+      });
+
+      btnConnexion.addEventListener('click', () => {
+        afficherFormulaire('connexion');
+      });
+
+      switchToConnexion.addEventListener('click', (event) => {
+        event.preventDefault();
+        afficherFormulaire('connexion');
+      });
+
+      switchToInscription.addEventListener('click', (event) => {
+        event.preventDefault();
+        afficherFormulaire('inscription');
+      });
+    </script>
+  </body>
 </html>
